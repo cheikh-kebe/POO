@@ -21,7 +21,7 @@ julie = User.new("julie@julie.com", 35)
 jean = User.new("jean@jean.com", 23)
 claude = User.new("claude@claude.com", 75)
 
-anniversaire = Event.new("2021-04-27 14:00", 30, "the hacking project meeting", ["truc@machin.com", "bidule@chose.fr"])
+anniversaire = Event.new("2021-04-27 14:00", 30, "the hacking project meeting", [julie, jean])
 
 puts anniversaire.to_s
 puts anniversaire.postpone
@@ -31,3 +31,5 @@ puts anniversaire.is_future?
 puts anniversaire.is_soon?
 
 puts julie.find_by_email
+
+puts anniversaire.age_analysis

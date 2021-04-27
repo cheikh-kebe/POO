@@ -9,7 +9,7 @@ class Event
     @start = Time.parse(start)
     @duration = duration.to_i
     @title = title.to_s
-    @@all_attendees = @email 
+    @attendees = attendees 
   end
 
   def to_s
@@ -18,8 +18,24 @@ class Event
     puts "voici le titre: #{@title}"
     puts "La réunion debute le: #{@start}"
     puts "la durée sera de : #{@duration}"
-    puts "les invités sont : #{@all_attendees}"
+    puts "les invités sont : #{@attendees.join}"
     
+  end
+
+  def age_analysis
+    age_array = [] #On initialise un array qui va contenir les âges de tous les participants à un évènement
+    average = 0 #On initialise une variable pour calculer la moyenne d'âge à l'évènement
+
+    @attendees.each do |attendee| #On parcourt tous les participants (objets de type User)
+      age_array << attendee.age #leur âge est stocké dans l'array des âges
+      average = average + attendee.age #leur âge est additionné pour préparer le calcul de la moyenne
+    end
+
+    average = average / @attendees.length #on divise la somme des âges pour avoir la moyenne
+
+    puts "Voici les âges des participants :"
+    puts age_array.join(", ")
+    puts "La moyenne d'âge est de #{average} ans"
   end
 
   def postpone
